@@ -1,0 +1,28 @@
+@import 'tailwindcss';
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+@import 'ngx-toastr/toastr';
+@import '@ctrl/ngx-emoji-mart/picker';
+
+:root {
+  box-sizing: border-box;
+  scroll-behavior: smooth;
+  will-change: transform;
+}
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: 'Cairo Variable', sans-serif;
+  color: var(--color-gray-700);
+  line-height: 16px;
+  box-sizing: border-box;
+}
+
+.blured-card {
+  @apply bg-white/20 backdrop-blur-sm border border-white/30 rounded-xl flex  gap-4 text-white;
+}
+.blured-card-hover {
+  @apply hover:scale-105 transition-transform duration-200;
+}
