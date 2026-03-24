@@ -1,0 +1,94 @@
+<div class="min-w-10 w-full max-w-lg bg-white rounded-xl p-8 mx-auto">
+  <h2 class="text-3xl font-bold text-gray-700 mb-3 text-center">Login</h2>
+  <p class="text-center">
+    Don't have an account? <a routerLink="/signup" class="text-blue-500">Sign up</a>
+  </p>
+  <div class="flex item-center gap-3">
+    <button
+      class="btn hover:scale-105 transition-transform duration-200 flex-1 flex justify-center items-center gap-2 border border-gray-300 rounded-base py-2 mt-6 cursor-pointer"
+    >
+      <i class="fa-brands fa-google text-red-500"></i>
+      Google
+    </button>
+    <button
+      class="btn bg-blue-500 text-white hover:scale-105 transition-transform duration-200 flex-1 flex justify-center items-center gap-2 border border-gray-300 rounded-base py-2 mt-6 cursor-pointer"
+    >
+      <i class="fa-brands fa-facebook text-white"></i>
+      Facebook
+    </button>
+  </div>
+  <div class="my-6 grid grid-cols-[1fr_auto_1fr] items-center gap-3">
+    <div class="h-px bg-linear-to-r from-transparent via-gray-400/40 to-transparent"></div>
+    <span class="text-sm text-gray-400">or continue with email</span>
+    <div class="h-px bg-linear-to-r from-transparent via-gray-400/40 to-transparent"></div>
+  </div>
+
+  <form (ngSubmit)="onSubmit()" [formGroup]="loginForm">
+    <div class="mb-6">
+      <label for="email">Email Address</label>
+      <div class="relative">
+        <input
+          type="email"
+          id="email"
+          formControlName="email"
+          class="bg-neutral-secondary-medium border rounded-lg border-slate-200 text-heading text-sm rounded-base focus:ring-brand focus:border-brand block w-full px-4 py-3 pl-11 shadow-xs placeholder:text-body"
+          placeholder="name@example.com"
+          required
+        />
+        <i class="fa-solid fa-envelope text-gray-400 absolute left-4 top-1/2 -translate-y-1/2"></i>
+      </div>
+
+      @let emailControl = loginForm.get('email');
+      @if (emailControl?.invalid && emailControl?.touched) {
+        @if (emailControl?.errors?.['required']) {
+          <p class="mt-1 text-sm text-red-600">*Email is required</p>
+        }
+        @if (loginForm.get('email')?.errors?.['email']) {
+          <p class="mt-1 text-sm text-red-600">*Email is invalid</p>
+        }
+      }
+    </div>
+
+    <div class="mb-6">
+      <label for="password">Password</label>
+      <div class="relative">
+        <input
+          type="password"
+          id="password"
+          formControlName="password"
+          class="bg-neutral-secondary-medium border rounded-lg border-slate-200 text-heading text-sm rounded-base focus:ring-brand focus:border-brand block w-full px-4 py-3 pl-11 shadow-xs placeholder:text-body"
+          placeholder="Create a strong password"
+          required
+        />
+        <i class="fa-solid fa-lock text-gray-400 absolute left-4 top-1/2 -translate-y-1/2"></i>
+      </div>
+      @let passwordControl = loginForm.get('password');
+      @if (passwordControl?.invalid && passwordControl?.touched) {
+        @if (passwordControl?.errors?.['required']) {
+          <p class="mt-1 text-sm text-red-600">*Password is required</p>
+        }
+        @if (passwordControl?.errors?.['pattern']) {
+          <p class="mt-1 text-sm text-red-600">
+            *Password should be at least eight characters, at least one upper case English letter,
+            one lower case English letter, one number and one special character
+          </p>
+        }
+      }
+    </div>
+
+    <button
+      type="submit"
+      [disabled]="isLoading || loginForm.invalid"
+      [class.bg-gray-500]="isLoading"
+      class="w-full text-white bg-linear-to-r from-blue-600 to-blue-400 box-border border border-transparent disabled:from-gray-500 disabled:to-gray-400 disabled:hover:bg-gray-500 disabled:cursor-not-allowed focus:ring-4 focus:ring-brand-medium shadow-xs font-medium leading-5 rounded-base text-sm px-5 py-2.5 focus:outline-none"
+    >
+      @if (isLoading) {
+        <span class="font-bold text-base me-1">Signing you in</span>
+        <i class="fa-solid fa-spinner fa-spin"></i>
+      } @else {
+        <span class="font-bold text-base me-1">Sign in</span>
+        <i class="fa-solid fa-arrow-right"></i>
+      }
+    </button>
+  </form>
+</div>

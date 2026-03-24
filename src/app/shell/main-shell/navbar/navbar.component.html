@@ -1,0 +1,115 @@
+<header class="sticky top-0 z-40 border-b border-slate-200/90 bg-white/95 backdrop-blur">
+  <nav class="bg-neutral-primary w-full">
+    <div
+      class="mx-auto flex max-w-7xl items-center justify-between gap-2 px-2 py-1.5 sm:gap-3 sm:px-3"
+    >
+      <div class="flex gap-2 items-center">
+        <img
+          class="size-9 rounded-xl object-cover"
+          src="./images/social-media-logo.png"
+          alt="{{ APP_NAME }} Logo"
+        />
+        <span class="hidden text-xl font-extrabold text-slate-900 sm:block">{{ APP_NAME }}</span>
+      </div>
+
+      <nav
+        class="flex min-w-0 items-center gap-1 overflow-x-auto rounded-2xl border border-slate-200 bg-slate-50/90 px-1 py-1 sm:px-2"
+      >
+        <a
+          routerLink="/feed"
+          routerLinkActive="text-[#1f6fe5]"
+          class="flex cursor-pointer items-center gap-1.5 rounded-xl px-2.5 py-2 text-sm font-extrabold transition sm:gap-2 sm:px-3.5 hover:bg-white/90"
+        >
+          <i class="fa-regular fa-house text-xl" aria-hidden="true"></i>
+          <span class="hidden text-xs sm:block">Feed</span>
+        </a>
+        <a
+          routerLink="/profile"
+          routerLinkActive="text-[#1f6fe5]"
+          class="flex cursor-pointer items-center gap-1.5 rounded-xl px-2.5 py-2 text-sm font-extrabold transition sm:gap-2 sm:px-3.5 hover:bg-white/90"
+        >
+          <i class="fa-regular fa-user text-xl" aria-hidden="true"></i>
+          <span class="hidden text-xs sm:block">Profile</span>
+        </a>
+        <a
+          routerLink="/notifications"
+          routerLinkActive="text-[#1f6fe5]"
+          class="relative flex w-full cursor-pointer items-center gap-1.5 overflow-hidden rounded-xl px-2.5 py-2 text-sm font-extrabold transition sm:gap-2 sm:px-3.5 hover:bg-white/90"
+        >
+          <span class="relative inline-flex shrink-0">
+            <i class="fa-regular fa-bell text-xl" aria-hidden="true"></i>
+            @if (unreadNotificationsCount > 0) {
+              <span
+                class="absolute -top-1 -right-2 min-w-4 rounded-full bg-red-500 px-1 py-0.5 text-center text-[8px] font-bold leading-none text-white"
+                aria-hidden="true"
+              >
+                {{ unreadNotificationsCount }}
+              </span>
+            }
+          </span>
+          <span class="hidden w-full text-xs sm:block">Notifications</span>
+        </a>
+      </nav>
+
+      <div class="relative flex items-center space-x-3 rtl:space-x-reverse">
+        <button
+          (click)="toggleDropdown()"
+          type="button"
+          class="flex cursor-pointer items-center gap-2 rounded-full border border-slate-200 bg-slate-50 px-2 py-1.5 transition hover:bg-slate-100"
+          id="user-menu-button"
+          aria-haspopup="menu"
+          [attr.aria-expanded]="isDropdownOpen"
+          aria-controls="user-dropdown"
+        >
+          <span class="sr-only">Open user menu</span>
+          <img
+            class="h-8 w-8 rounded-full"
+            [src]="user.photo || '/assets/images/profile.png'"
+            alt=""
+          />
+          <span class="hidden md:block">{{ user.name }}</span>
+          <i class="fa-solid fa-bars text-gray-400" aria-hidden="true"></i>
+        </button>
+        <div
+          [class.hidden]="!isDropdownOpen"
+          class="absolute right-0 top-full z-100 mt-1 w-44 rounded-lg border border-slate-200 bg-white shadow-lg"
+          id="user-dropdown"
+        >
+          <ul class="text-body p-2 text-sm font-medium" aria-labelledby="user-menu-button">
+            <li>
+              <button
+                type="button"
+                routerLink="/profile"
+                (click)="closeDropdown()"
+                class="flex w-full cursor-pointer items-center gap-2 rounded px-3 py-2 text-sm font-medium text-slate-700 hover:bg-slate-100"
+              >
+                <i class="fa-regular fa-user" aria-hidden="true"></i>
+                Profile
+              </button>
+            </li>
+            <li>
+              <button
+                type="button"
+                routerLink="/settings"
+                (click)="closeDropdown()"
+                class="mb-2 flex w-full cursor-pointer items-center gap-2 rounded px-3 py-2 text-sm font-medium text-slate-700 hover:bg-slate-100"
+              >
+                <i class="fa-solid fa-gear" aria-hidden="true"></i>
+                Settings
+              </button>
+            </li>
+            <li class="border-t border-gray-200 pt-2">
+              <button
+                type="button"
+                (click)="onLogout()"
+                class="inline-flex w-full cursor-pointer items-center rounded p-2 text-rose-600 hover:bg-rose-50"
+              >
+                Logout
+              </button>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </nav>
+</header>
