@@ -4,7 +4,7 @@ A modern **Arabic-friendly** web client for a social network: sign in, browse th
 
 ---
 🔗 **Live Demo:**
-https://e-commerce-fresh-cart-production.netlify.app/home
+https://yasien-ahmed.github.io/Social-Network-App
 
 ---
 
