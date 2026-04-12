@@ -2,6 +2,12 @@
 
 A modern **Arabic-friendly** web client for a social network: sign in, browse the feed, post and interact, manage your profile, and get notifications. Uses **Cairo** font and RTL-aware layout in places.
 
+---
+🔗 **Live Demo:**
+https://e-commerce-fresh-cart-production.netlify.app/home
+
+---
+
 ## Features
 
 - **Authentication**: Sign up, sign in, change password, guest/auth route guards, logout
